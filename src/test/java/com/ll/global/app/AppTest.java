@@ -58,7 +58,6 @@ public class AppTest {
                 .contains("명언 :")
                 .contains("작가 :");
     }
-
     /*
     꼼수를 써서 최대한 구현을 늦추자.
     테스트 케이스(TC)만들고 -> 꼼수를 써서 해결하고 -> refactoring 반복하자.
@@ -79,4 +78,9 @@ public class AppTest {
                 .contains("작가 :")
                 .contains("1번 명언이 등록되었습니다.");
     }
+    /*
+    구현하지 말고 꼼수 쓰자.
+    피할 수 있을 때 까지 개발하지 말자.
+    막다른 길까지 계속 개발을 피하자
+     */
 }
