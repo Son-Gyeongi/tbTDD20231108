@@ -83,4 +83,34 @@ public class AppTest {
     피할 수 있을 때 까지 개발하지 말자.
     막다른 길까지 계속 개발을 피하자
      */
+
+    @Test
+    @DisplayName("등록할 때 마다 번호가 1씩 증가")
+    void t4() {
+        final String out = run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                종료
+                """);
+
+        assertThat(out)
+                .contains("1번 명언이 등록되었습니다.")
+                .doesNotContain("2번 명언이 등록되었습니다.");
+
+        final String out2 = run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                현재를 사랑하라.
+                작자미상
+                종료
+                """);
+
+        assertThat(out2)
+                .contains("1번 명언이 등록되었습니다.")
+                .contains("2번 명언이 등록되었습니다.")
+                .doesNotContain("3번 명언이 등록되었습니다.");
+    }
 }
