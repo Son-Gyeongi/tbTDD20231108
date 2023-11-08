@@ -27,7 +27,12 @@ public class App {
                 final long id = lastQuotationId; // 바뀔 가능성이 없는 곳에 final 붙인다.
 
                 System.out.println("%d번 명언이 등록되었습니다.".formatted(id));
-            } else if (cmd.equals("종료"))  return;
+            } else if (cmd.equals("목록")) {
+                System.out.println("번호 / 작가 / 명언");
+                System.out.println("----------------------");
+                System.out.println("2 / 작자미상 / 과거에 집착하지 마라.");
+                System.out.println("1 / 작자미상 / 현재를 사랑하라.");
+            } else if (cmd.equals("종료")) return;
         }
     }
 }
