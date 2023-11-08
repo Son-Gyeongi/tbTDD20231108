@@ -15,7 +15,7 @@ public class AppTest {
     void t1() {
         ByteArrayOutputStream byteArrayOutputStream = TestUtil.setOutToByteArray();
 
-        new App();
+        new App().run();
 
         // new App()에서 실행되는 모든 출력문이 out으로 모인다.
         String out = byteArrayOutputStream.toString().trim();
