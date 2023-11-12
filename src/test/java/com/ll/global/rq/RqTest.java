@@ -49,4 +49,14 @@ public class RqTest {
 
         assertThat(age).isEqualTo("100");
     }
+
+    @Test
+    @DisplayName("getParameterAsLong") // id 값을 Long으로 타입을 바꿔준다. / 형변환
+    void t6() {
+        final Rq rq = new Rq("삭제?id=4&이름=Alice");
+
+        long age = rq.getParameterAsLong("id", 0);
+
+        assertThat(age).isEqualTo(4);
+    }
 }

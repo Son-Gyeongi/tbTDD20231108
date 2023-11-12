@@ -37,4 +37,8 @@ public class Rq {
         // Map에 있는 기능 getOrDefault
         return params.getOrDefault(paramName, defaultValue); // 있으면 값을 주고 없으면 defaultValue를 준다.
     }
+
+    public long getParameterAsLong(String paramName, int defaultValue) {
+        return defaultValue;
+    }
 }
