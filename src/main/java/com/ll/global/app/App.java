@@ -1,6 +1,6 @@
 package com.ll.global.app;
 
-import com.ll.global.domain.quotation.quotation.entity.Quotation;
+import com.ll.domain.quotation.quotation.entity.Quotation;
 
 import java.util.ArrayList;
 import java.util.List;

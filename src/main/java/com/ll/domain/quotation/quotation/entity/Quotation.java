@@ -1,4 +1,4 @@
-package com.ll.global.domain.quotation.quotation.entity;
+package com.ll.domain.quotation.quotation.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
