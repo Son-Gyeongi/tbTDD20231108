@@ -8,10 +8,18 @@ import static org.assertj.core.api.Assertions.*;
 public class RqTest {
 
     @Test
-    @DisplayName("t1")
+    @DisplayName("getAction")
     void t1() {
         final Rq rq = new Rq("삭제?id=1");
 
         assertThat(rq.getAction()).isEqualTo("삭제");
+    }
+
+    @Test
+    @DisplayName("getParameter")
+    void t2() {
+        final Rq rq = new Rq("삭제?이름=Paul");
+
+        assertThat(rq.getParameter("이름")).isEqualTo("Paul");
     }
 }
