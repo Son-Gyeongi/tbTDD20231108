@@ -68,29 +68,33 @@ public class App {
                             );
                 }
                 case "등록" -> {
-                    actionWrite();
+                    actionWrite(); // Show 라고 안 붙인 거는 CUD가 일어난다. Create, Update, Delete
                 }
                 case "목록" -> {
-                    System.out.println("번호 / 작가 / 명언");
-                    System.out.println("----------------------");
-
-                    quotations
-                            .reversed() // 뒤집어준다.
-                            .forEach(
-                                    quotation -> System.out.println(
-                                            "%d / %s / %s".formatted(
-                                                    quotation.getId(),
-                                                    quotation.getAuthorName(),
-                                                    quotation.getContent()
-                                            )
-                                    )
-                            );
+                    actionShowList(); // Show 라고 붙인 거는 R, Read만 일어난다.
                 }
                 case "종료" -> {
                     return;
                 }
             }
         }
+    }
+
+    private void actionShowList() {
+        System.out.println("번호 / 작가 / 명언");
+        System.out.println("----------------------");
+
+        quotations
+                .reversed() // 뒤집어준다.
+                .forEach(
+                        quotation -> System.out.println(
+                                "%d / %s / %s".formatted(
+                                        quotation.getId(),
+                                        quotation.getAuthorName(),
+                                        quotation.getContent()
+                                )
+                        )
+                );
     }
 
     private void actionWrite() {
