@@ -1,8 +1,8 @@
 package com.ll.global.rq;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Rq {
     private final String action;
@@ -13,20 +13,15 @@ public class Rq {
         final String[] cmdBits = cmd.split("\\?", 2);
         action = cmdBits[0].trim();
         queryString = cmdBits.length == 2 ? cmdBits[1].trim() : "";
-        params = new HashMap<>();
-
-        if (queryString.isBlank()) return;
-
-        Arrays
-                .stream(queryString.split("&"))
-//                .peek(System.out::println) // stream 중간결과 확인
-                .forEach(param -> {
-                    final String[] paramBits = param.split("=", 2);
-                    final String paramName = paramBits[0].trim();
-                    final String paramValue = paramBits[1].trim();
-
-                    params.put(paramName, paramValue);
-                });
+        // Map으로 바껴서 들어간다.
+        params = Arrays.stream(queryString.split("&"))
+                .filter(param -> param.contains("="))
+                .map(param -> param.split("=", 2))
+                .collect(Collectors.toMap(
+                        paramBits -> paramBits[0].trim(), // key
+                        paramBits -> paramBits[1].trim(), // value
+                        (existing, replacement) -> replacement)); // merge function, in case of key conflict
+        // (existing, replacement) -> replacement : 중복된 거를 어떻게 처리할 건지 물어보는 거, 지금은 몰라도 된다.
     }
 
     public String getAction() {
