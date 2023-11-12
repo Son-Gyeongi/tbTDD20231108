@@ -41,12 +41,12 @@ public class RqTest {
     }
 
     @Test
-    @DisplayName("getParameterOr")
+    @DisplayName("getParameterOr") // Map에 있는 기능 getOrDefault
     void t5() {
         final Rq rq = new Rq("삭제?id=4&이름=Alice");
 
         String age = rq.getParameter("나이", "100");
 
-        assertThat(age).isEqualTo(100);
+        assertThat(age).isEqualTo("100");
     }
 }

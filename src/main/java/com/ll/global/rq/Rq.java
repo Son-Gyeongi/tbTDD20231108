@@ -29,10 +29,11 @@ public class Rq {
     }
 
     public String getParameter(final String paramName) {
-        return params.get(paramName);
+        return params.get(paramName); // 있으면 값을 주고 없으면 null을 준다.
     }
 
     public String getParameter(String paramName, String defaultValue) {
-        return null;
+        // Map에 있는 기능 getOrDefault
+        return params.getOrDefault(paramName, defaultValue); // 있으면 값을 주고 없으면 defaultValue를 준다.
     }
 }
