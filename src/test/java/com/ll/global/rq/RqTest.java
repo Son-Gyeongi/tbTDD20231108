@@ -3,7 +3,7 @@ package com.ll.global.rq;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RqTest {
 
@@ -41,7 +41,8 @@ public class RqTest {
     }
 
     @Test
-    @DisplayName("getParameterOr") // Map에 있는 기능 getOrDefault
+    @DisplayName("getParameterOr")
+        // Map에 있는 기능 getOrDefault
     void t5() {
         final Rq rq = new Rq("삭제?id=4&이름=Alice");
 
@@ -51,7 +52,8 @@ public class RqTest {
     }
 
     @Test
-    @DisplayName("getParameterAsLong") // id 값을 Long으로 타입을 바꿔준다. / 형변환
+    @DisplayName("getParameterAsLong")
+        // id 값을 Long으로 타입을 바꿔준다. / 형변환
     void t6() {
         final Rq rq = new Rq("삭제?id=4&이름=Alice");
 
@@ -61,7 +63,8 @@ public class RqTest {
     }
 
     @Test
-    @DisplayName("getParameterAsLong 2") // 4번은 실패로 0이 반환된다.
+    @DisplayName("getParameterAsLong 2")
+        // 4번은 실패로 0이 반환된다.
     void t7() {
         final Rq rq = new Rq("삭제?id=4번&이름=Alice");
 

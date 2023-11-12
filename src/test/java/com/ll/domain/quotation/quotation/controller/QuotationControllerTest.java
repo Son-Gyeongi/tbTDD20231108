@@ -29,7 +29,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("등록")
     void t3_2() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -49,7 +49,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("등록할 때 마다 번호가 1씩 증가, 1건 등록")
     void t4() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -66,7 +66,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("등록할 때 마다 번호가 1씩 증가, 2건 등록")
     void t5() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -84,7 +84,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("목록")
     void t6() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -104,7 +104,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("목록 2")
     void t7() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -128,7 +128,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("삭제")
     void t8() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -149,7 +149,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("삭제 2")
     void t9() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -173,7 +173,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("수정")
     void t10() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -197,7 +197,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("존재하지 않는 명언에 대한 삭제 예외처리")
     void t11() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -216,7 +216,7 @@ public class QuotationControllerTest {
     @Test
     @DisplayName("존재하지 않는 명언에 대한 수정 예외처리")
     void t12() {
-        final String out =  AppTest.run("""
+        final String out = AppTest.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
