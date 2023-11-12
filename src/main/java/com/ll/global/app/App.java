@@ -23,6 +23,12 @@ public class App {
             final String cmd = scanner.nextLine().trim();
 
             switch (cmd) {
+                case "삭제?id=1" -> {
+                    quotations
+                            .removeIf(quotation -> quotation.getId() == 1); // removeIf() 함수형
+
+                    System.out.println("1번 명언이 삭제되었습니다.");
+                }
                 case "등록" -> {
                     System.out.println("명언 : ");
                     final String content = scanner.nextLine().trim();
@@ -51,9 +57,6 @@ public class App {
                                             )
                                     )
                             );
-
-                    System.out.println("2 / 작자미상 / 과거에 집착하지 마라.");
-                    System.out.println("1 / 작자미상 / 현재를 사랑하라.");
                 }
                 case "종료" -> {
                     return;
