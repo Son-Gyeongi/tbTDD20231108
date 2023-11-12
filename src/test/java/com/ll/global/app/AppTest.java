@@ -202,4 +202,27 @@ public class AppTest {
     TDD를 할 때 바로 Rq를 안 만든다. 오버 엔지니어링을 피하게 된다.
      */
 
+    @Test
+    @DisplayName("수정")
+    void t10() {
+        final String out = run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                홍길동
+                수정?id=2
+                과거에 집착하지 마라!
+                홍길동님
+                목록
+                """);
+
+        assertThat(out)
+                .contains("번호 / 작가 / 명언")
+                .contains("----------------------")
+                .doesNotContain("2 / 홍길동 / 과거에 집착하지 마라.")
+                .contains("2 / 홍길동님 / 과거에 집착하지 마라!")
+                .contains("1 / 작자미상 / 현재를 사랑하라.");
+    }
 }
