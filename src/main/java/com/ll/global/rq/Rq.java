@@ -29,7 +29,8 @@ public class Rq {
     }
 
     public String getParameter(final String paramName) {
-        return params.get(paramName); // 있으면 값을 주고 없으면 null을 준다.
+//        return params.get(paramName); // 있으면 값을 주고 없으면 null을 준다.
+        return getParameter(paramName, null);
     }
 
     public String getParameter(String paramName, String defaultValue) {
