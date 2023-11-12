@@ -31,9 +31,16 @@ public class App {
                     long id = rq.getParameterAsLong("id", 0);
 
                     quotations
-                            .removeIf(quotation -> quotation.getId() == id); // removeIf() 함수형
-
-                    System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
+                            .stream()
+                            .filter(quotation -> quotation.getId() == id)
+                            .findFirst() // 하나라도 있으면 줘라. Optional로 준다.
+                            .ifPresentOrElse(
+                                    quotation -> {
+                                        quotations.remove(quotation);
+                                        System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
+                                    },
+                                    () -> System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id))
+                            );
                 }
                 case "수정" -> {
                     long id = rq.getParameterAsLong("id", 0);
