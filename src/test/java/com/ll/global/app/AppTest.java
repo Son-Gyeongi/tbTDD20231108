@@ -198,4 +198,8 @@ public class AppTest {
                 .doesNotContain("2 / 홍길동 / 과거에 집착하지 마라.")
                 .contains("1 / 작자미상 / 현재를 사랑하라.");
     }
+    /*
+    TDD를 할 때 바로 Rq를 안 만든다. 오버 엔지니어링을 피하게 된다.
+     */
+
 }

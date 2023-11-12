@@ -22,18 +22,21 @@ public class App {
         while (true) {
             final String cmd = scanner.nextLine().trim();
 
-            switch (cmd) {
-                case "삭제?id=1" -> {
-                    quotations
-                            .removeIf(quotation -> quotation.getId() == 1); // removeIf() 함수형
+            // 중복 제거
+            final String[] cmdBits = cmd.split("\\?", 2);
+            final String action = cmdBits[0].trim();
+            final String queryString = cmdBits.length == 2 ? cmdBits[1].trim() : "";
 
-                    System.out.println("1번 명언이 삭제되었습니다.");
-                }
-                case "삭제?id=2" -> {
-                    quotations
-                            .removeIf(quotation -> quotation.getId() == 2); // removeIf() 함수형
 
-                    System.out.println("2번 명언이 삭제되었습니다.");
+            switch (action) {
+                case "삭제" -> {
+                    final String idStr = queryString.replace("id=", "");
+                    long id = Long.parseLong(idStr);
+
+                    quotations
+                            .removeIf(quotation -> quotation.getId() == id); // removeIf() 함수형
+
+                    System.out.printf("%d번 명언이 삭제되었습니다.", id);
                 }
                 case "등록" -> {
                     System.out.println("명언 : ");
