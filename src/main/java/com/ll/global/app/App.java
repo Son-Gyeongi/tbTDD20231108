@@ -21,21 +21,11 @@ public class App {
             final String cmd = scanner.nextLine().trim();
 
             Rq rq = new Rq(cmd);
-            final String action = rq.getAction();
 
-            switch (action) {
-                case "삭제" -> {
-                    quotationController.actionRemove(rq);
-                }
-                case "수정" -> {
-                    quotationController.actionModify(rq);
-                }
-                case "등록" -> {
-                    quotationController.actionWrite(); // Show 라고 안 붙인 거는 CUD가 일어난다. Create, Update, Delete
-                }
-                case "목록" -> {
-                    quotationController.actionShowList(); // Show 라고 붙인 거는 R, Read만 일어난다.
-                }
+            switch (rq.getAction()) {
+                // dispatch는 라우팅 역할, 분배하는 것도 QuotationController가 다 알아서 해야한다.
+                // 삭제, 수정, 등록, 목록 모두 quotationController.dispatch(rq)가 실행된다.
+                case "삭제", "수정", "등록", "목록" -> quotationController.dispatch(rq);
                 case "종료" -> {
                     return;
                 }

@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QuotationController {
-    final Scanner scanner;
-    List<Quotation> quotations;
-    long lastQuotationId;
+    private final Scanner scanner;
+    private final List<Quotation> quotations;
+    private long lastQuotationId;
 
     public QuotationController(final Scanner scanner) {
         this.scanner = scanner;
@@ -84,9 +84,19 @@ public class QuotationController {
 
         final long id = ++lastQuotationId; // 바뀔 가능성이 없는 곳에 final 붙인다.
 
-        Quotation quotation = new Quotation(id, authorName, content);
+        final Quotation quotation = new Quotation(id, authorName, content);
         quotations.add(quotation);
 
         System.out.println("%d번 명언이 등록되었습니다.".formatted(id));
+    }
+
+    // dispatch는 라우팅 역할, 분배하는 것도 QuotationController가 다 알아서 해야한다.
+    public void dispatch(Rq rq) {
+        switch (rq.getAction()) {
+            case "삭제" -> actionRemove(rq);
+            case "수정" -> actionModify(rq);
+            case "목록" -> actionShowList();
+            case "등록" -> actionWrite();
+        }
     }
 }
