@@ -59,4 +59,14 @@ public class RqTest {
 
         assertThat(age).isEqualTo(4);
     }
+
+    @Test
+    @DisplayName("getParameterAsLong 2") // 4번은 실패로 0이 반환된다.
+    void t7() {
+        final Rq rq = new Rq("삭제?id=4번&이름=Alice");
+
+        long age = rq.getParameterAsLong("id", 0);
+
+        assertThat(age).isEqualTo(0);
+    }
 }
