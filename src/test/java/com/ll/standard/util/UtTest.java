@@ -76,6 +76,18 @@ public class UtTest {
 
         assertThat(content).isNotBlank(); // 값이 있어야 참
     }
+
+    // 읽기만 하면 된다. 객체를 파일로 저장했으니 읽기도 가능해야한다. 이거만 하면 영속성 다 할 수 있다.
+    @Test
+    @DisplayName("JSON 형식으로 파일에 저장된 객체를 읽을 수 있다.")
+    void t6() {
+        Ut.file.save(testFilePath, new TempArticle(1, "제목", "내용"));
+
+        // testFilePath 경로에 있는 것들을 TempArticle클래스 기준으로 객체화해서 준다.
+        final TempArticle tempArticle = Ut.file.getContent(testFilePath, TempArticle.class);
+
+        assertThat(tempArticle).isNotNull();
+    }
 }
 
 // 객체 저장
@@ -85,5 +97,4 @@ class TempArticle {
     private final long id;
     private final String title;
     private final String content;
-
 }
