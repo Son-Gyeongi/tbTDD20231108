@@ -40,3 +40,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### 깃에 공유하지 마세요. ###
+/temp
+/data

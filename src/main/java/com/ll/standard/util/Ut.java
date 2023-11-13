@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.Comparator;
 
 public class Ut {
     // 내부 클래스
@@ -14,7 +15,7 @@ public class Ut {
         private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
         @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
-        public static void save(String filePath, Object obj) {
+        public static void save(final String filePath, final Object obj) {
             // 객체를 JSON 문자열로 직렬화
             String jsonContent = OBJECT_MAPPER.writeValueAsString(obj);
 
@@ -23,7 +24,7 @@ public class Ut {
         }
 
         @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
-        public static void save(String filePath, String content) {
+        public static void save(final String filePath, final String content) {
             final Path path = Paths.get(filePath);
 
             try {
@@ -44,14 +45,27 @@ public class Ut {
         }
 
         // 파일이 있는지 체크
-        public static boolean exists(String filePath) {
+        public static boolean exists(final String filePath) {
             return Files.exists(Paths.get(filePath));
         }
 
         @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
-        public static boolean delete(String filePath) {
+        public static boolean delete(final String filePath) {
+            final Path path = Paths.get(filePath);
+
             try {
-                Files.delete(Paths.get(filePath));
+                Files.delete(path); // 파일 지우는 기능
+                return true;
+            } catch (DirectoryNotEmptyException e) { // 디렉토리 지우는 기능
+                Files.walk(path)
+                        .sorted(Comparator.reverseOrder())
+                        .forEach(_path -> {
+                            try {
+                                Files.delete(_path);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        });
                 return true;
             } catch (NoSuchFileException e) {
                 return false; // 없는 파일 지우라고 하는 경우
