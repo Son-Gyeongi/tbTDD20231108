@@ -98,6 +98,7 @@ public class Ut {
             save(filePath, String.valueOf(content));
         }
 
+        // 파일을 읽어온다. 객체에 감싸서 반환
         @SneakyThrows
         public static <T> T getContent(String filePath, Class<T> cls) {
             final String content = getContent(filePath);
