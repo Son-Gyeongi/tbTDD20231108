@@ -20,10 +20,9 @@ public class QuotationController {
     public void actionRemove(Rq rq) {
         long id = rq.getParameterAsLong("id", 0);
 
-        quotationService.findAll()
-                .stream()
-                .filter(quotation -> quotation.getId() == id)
-                .findFirst() // 하나라도 있으면 줘라. Optional로 준다.
+        Optional<Quotation> quotationOpt = quotationService.findById(id);
+
+        quotationOpt
                 .ifPresentOrElse(
                         quotation -> {
                             // remove도 Service한테 요청해야 한다.
