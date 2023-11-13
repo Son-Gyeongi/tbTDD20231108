@@ -2,6 +2,7 @@ package com.ll.standard.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -93,8 +94,9 @@ public class UtTest {
 // 객체 저장
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor // 역직렬화 관련 오류 노출 해결
 class TempArticle {
-    private final long id;
-    private final String title;
-    private final String content;
+    private long id;
+    private String title;
+    private String content;
 }

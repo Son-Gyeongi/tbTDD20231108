@@ -1,5 +1,6 @@
 package com.ll.standard.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 
@@ -10,11 +11,13 @@ public class Ut {
     // 내부 클래스
     public static class file {
 
+        // 한 번 객체를 만들어 놓고 두고두고 써라
+        private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
         @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
         public static void save(String filePath, Object obj) {
-            ObjectMapper objectMapper = new ObjectMapper();
             // 객체를 JSON 문자열로 직렬화
-            String jsonContent = objectMapper.writeValueAsString(obj);
+            String jsonContent = OBJECT_MAPPER.writeValueAsString(obj);
 
             // JSON 문자열을 파일에 저장
             save(filePath, jsonContent);
@@ -82,8 +85,20 @@ public class Ut {
             save(filePath, String.valueOf(content));
         }
 
-        public static <T> T getContent(String testFilePath, Class<?> cls) {
-            return null;
+        @SneakyThrows
+        public static <T> T getContent(String filePath, Class<T> cls) {
+            final String content = getContent(filePath);
+
+            if (content == null) {
+                return null;
+            }
+
+            try {
+                return OBJECT_MAPPER.readValue(content, cls);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace(); // 역직렬화 관련 오류 노출
+                return null;
+            }
         }
     }
 }
