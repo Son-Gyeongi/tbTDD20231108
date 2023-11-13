@@ -10,6 +10,11 @@ public class Ut {
     public static class file {
 
         @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
+        public static void save(String filePath, Object obj) {
+
+        }
+
+        @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
         public static void save(String filePath, String content) {
             final Path path = Paths.get(filePath);
 

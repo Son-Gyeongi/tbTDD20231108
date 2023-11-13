@@ -1,5 +1,7 @@
 package com.ll.standard.util;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +31,7 @@ public class UtTest {
         // 실행 후 삭제하기
         Ut.file.delete(testFilePath);
         // 만약 test2.txt 파일도 여러 테스트에 걸쳐 사용된다면, afterEach에서 삭제하는 것이 좋습니다.
-        Ut.file.delete(test2FilePath);
+//        Ut.file.delete(test2FilePath);
     }
 
     @Test
@@ -62,4 +64,24 @@ public class UtTest {
 
         assertThat(content).isNull();
     }
+
+    @Test
+    @DisplayName("객체가 파일로 저장될 수 있다.")
+    void t5() {
+        Ut.file.save(testFilePath, new TempArticle(1, "제목", "내용"));
+
+        final String content = Ut.file.getContent(testFilePath);
+
+        assertThat(content).isNotBlank(); // 값이 있어야 참
+    }
+}
+
+// 객체 저장
+@Getter
+@AllArgsConstructor
+class TempArticle {
+    private final long id;
+    private final String title;
+    private final String content;
+
 }
