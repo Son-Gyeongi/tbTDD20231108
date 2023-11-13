@@ -9,6 +9,9 @@ import java.util.Optional;
 public class QuotationFileRepository implements QuotationRepository {
     // 추상메서드 오버라이드 필수
 
+    public static final String QUOTATION_DATA_PATH = "data/prod/quotation/";
+    private static final String LAST_ID_FILE_PATH = QUOTATION_DATA_PATH + "lastId.txt";
+
     @Override
     public List<Quotation> findAll() {
         return null;
@@ -31,14 +34,22 @@ public class QuotationFileRepository implements QuotationRepository {
             setLastId(quotation.getId());
         }
 
-        Ut.file.save("data/prod/quotation/" + quotation.getId() + ".json", quotation);
+        Ut.file.save(_getQuotationFilePath(quotation), quotation);
     }
 
     private void setLastId(final long id) {
-        Ut.file.save("data/prod/quotation/lastId.txt", id);
+        Ut.file.save(LAST_ID_FILE_PATH, id); // 여기서 id는 .txt에 적을 내용
     }
 
     private long getLastId() {
-        return Ut.file.getContentAsLong("data/prod/quotation/lastId.txt", 0);
+        return Ut.file.getContentAsLong(LAST_ID_FILE_PATH, 0);
+    }
+
+    /*
+    // _ 언더바는 내부용이다라는 의미가 있다.
+    테스트 제외하고는 내부에서 사용한다, 어쩔 수 없이 public으로 열어놨다.
+     */
+    public String _getQuotationFilePath(final Quotation quotation) {
+        return QUOTATION_DATA_PATH + quotation.getId() + ".json";
     }
 }

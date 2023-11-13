@@ -13,7 +13,7 @@ public class QuotationFileRepositoryTest {
     // 메서드 실행 전에 데이터를 깔끔하게 지우자
     @BeforeEach
     void beforeEach() {
-        Ut.file.delete("data/prod/quotation"); // 폴더를 지우자
+        Ut.file.delete(QuotationFileRepository.QUOTATION_DATA_PATH); // 폴더를 지우자
     }
 
     @Test
@@ -33,6 +33,6 @@ public class QuotationFileRepositoryTest {
         final Quotation quotation = new Quotation("작가1", "내용1");
         repository.save(quotation); // 자동으로 quotation의 id가 1로 할당되야 한다.
 
-        assertThat(Ut.file.exists("data/prod/quotation/1.json")).isTrue();
+        assertThat(Ut.file.exists(repository._getQuotationFilePath(quotation))).isTrue();
     }
 }
