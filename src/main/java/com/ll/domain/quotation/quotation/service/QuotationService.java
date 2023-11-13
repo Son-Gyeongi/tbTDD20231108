@@ -1,6 +1,7 @@
 package com.ll.domain.quotation.quotation.service;
 
 import com.ll.domain.quotation.quotation.entity.Quotation;
+import com.ll.domain.quotation.quotation.repository.QuotationMemoryRepository;
 import com.ll.domain.quotation.quotation.repository.QuotationRepository;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class QuotationService {
 
 
     public QuotationService() {
-        this.quotationRepository = new QuotationRepository();
+        this.quotationRepository = new QuotationMemoryRepository(); // 추상클래스, 인터페이스면 new를 할 수 없음
     }
 
     // 명언 모두 찾기
@@ -28,13 +29,13 @@ public class QuotationService {
     }
 
     // 명언 id로 찾기
-    public Optional<Quotation> findById(long id) {
+    public Optional<Quotation> findById(final long id) {
         // 데이터를 찾는 단순한 일도 리포지터리에 맡겨야 한다.
         return quotationRepository.findById(id);
     }
 
     // 명언 수정
-    public void modify(Quotation quotation, String authorName, String content) {
+    public void modify(final Quotation quotation, final String authorName, final String content) {
         quotation.setContent(content);
         quotation.setAuthorName(authorName);
 
@@ -42,7 +43,7 @@ public class QuotationService {
     }
 
     // 명언 등록
-    public Quotation write(String authorName, String content) {
+    public Quotation write(final String authorName, final String content) {
         final Quotation quotation = new Quotation(authorName, content);
 
         quotationRepository.save(quotation);
