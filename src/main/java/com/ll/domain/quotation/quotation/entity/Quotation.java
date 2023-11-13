@@ -9,10 +9,10 @@ import lombok.*;
 // jackson라이브러리 쓸 때 인자 없는 생성자가 있어야 한다. 굳이 공개할 필요없다.
 // jackson을 통해서 객체를 복원하겠다면 인자 없는 생성자가 있어야 한다.
 @ToString // 객체의 값이 문자열로 잘 나온다.
-@EqualsAndHashCode // 객체의 주소가 아닌 "id" 값으로 비교한다.
+@EqualsAndHashCode // 객체의 주소가 아닌 값으로 비교한다.
 public class Quotation {
     @Setter
-    @EqualsAndHashCode.Include // @EqualsAndHashCode(of = "id") 같다.
+    @EqualsAndHashCode.Include // @EqualsAndHashCode(of = "id") 같다. 객체의 주소가 아닌 "id" 값으로 비교한다.
     private Long id;
     @Setter
     @NonNull
