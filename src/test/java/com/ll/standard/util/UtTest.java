@@ -31,7 +31,7 @@ public class UtTest {
         // 실행 후 삭제하기
         Ut.file.delete(testFilePath);
         // 만약 test2.txt 파일도 여러 테스트에 걸쳐 사용된다면, afterEach에서 삭제하는 것이 좋습니다.
-//        Ut.file.delete(test2FilePath);
+        Ut.file.delete(test2FilePath);
     }
 
     @Test
@@ -66,11 +66,13 @@ public class UtTest {
     }
 
     @Test
-    @DisplayName("객체가 파일로 저장될 수 있다.")
+    @DisplayName("객체가 파일로 저장될 수 있다.") // 객체를 파일로 저장하려면 jackson
     void t5() {
         Ut.file.save(testFilePath, new TempArticle(1, "제목", "내용"));
 
         final String content = Ut.file.getContent(testFilePath);
+
+//        System.out.println(content); // content 확인하면 json형식으로 저장된다.
 
         assertThat(content).isNotBlank(); // 값이 있어야 참
     }
