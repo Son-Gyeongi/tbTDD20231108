@@ -12,7 +12,7 @@ public class Ut {
     // 내부 클래스
     public static class file {
 
-        @SneakyThrows // try-catch를 자동으로 해준다.
+        @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
         public static void save(String filePath, String content) {
             final Path path = Paths.get(filePath);
 
@@ -38,13 +38,14 @@ public class Ut {
             return Files.exists(Paths.get(filePath));
         }
 
-        @SneakyThrows // try-catch를 자동으로 해준다.
+        @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
         public static void delete(String filePath) {
             Files.delete(Paths.get(filePath));
         }
 
+        @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
         public static String getContent(String filePath) {
-            return null;
+            return Files.readString(Paths.get(filePath));
         }
     }
 }
