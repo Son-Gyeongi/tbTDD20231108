@@ -13,14 +13,16 @@ public class UtTest {
     private final String testFilePath = "temp/test.txt";
 
     // 테스트 메서드 전에 실행
-    @BeforeEach // junit의 기능
+    @BeforeEach
+    // junit의 기능
     void beforeEach() {
         // Utility 모아두는 곳 Ut
         Ut.file.save(testFilePath, "내용");
     }
 
     // 테스트 메서드 후에 실행
-    @AfterEach // junit의 기능
+    @AfterEach
+    // junit의 기능
     void afterEach() {
         // 실행 후 삭제하기
         Ut.file.delete(testFilePath);

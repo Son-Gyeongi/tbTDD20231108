@@ -3,10 +3,7 @@ package com.ll.standard.util;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 
 public class Ut {
     // 내부 클래스
@@ -45,7 +42,12 @@ public class Ut {
 
         @SneakyThrows // try-catch를 자동으로 해준다. exception 나는 거 해결
         public static String getContent(String filePath) {
-            return Files.readString(Paths.get(filePath));
+            try {
+                return Files.readString(Paths.get(filePath));
+                // 없는 파일이면 아예 뻗어버리는 데 try-catch로 예외가 터지면 null로 보내기로 했다.
+            } catch (NoSuchFileException e) {
+                return null;
+            }
         }
 
         public static long getContentAsLong(String testFilePath, long defaultValue) {
