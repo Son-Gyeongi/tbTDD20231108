@@ -31,8 +31,23 @@ public class QuotationFileRepositoryTest {
     void t2() {
         final QuotationFileRepository repository = new QuotationFileRepository();
         final Quotation quotation = new Quotation("작가1", "내용1");
-        repository.save(quotation); // 자동으로 quotation의 id가 1로 할당되야 한다.
+        repository.save(quotation);
 
         assertThat(Ut.file.exists(repository._getQuotationFilePath(quotation))).isTrue();
+    }
+
+    @Test
+    @DisplayName("1번 명언을 저장 후 다시 불러온다.")
+    void t3() {
+        // 저장
+        final QuotationFileRepository repository = new QuotationFileRepository();
+        final Quotation quotation = new Quotation("작가1", "내용1");
+        repository.save(quotation);
+
+        // 불러오기
+        // .get() Optional의 값을 있으면 가져오고 없으면 오류난다.
+        final Quotation quotationFromFile = repository.findById(1L).get();
+
+        assertThat(quotationFromFile).isEqualTo(quotation);
     }
 }
